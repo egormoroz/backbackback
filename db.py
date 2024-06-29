@@ -43,7 +43,7 @@ async def get_empl(id: int) -> EmployeeORM | None:
 async def get_empls_page(page_idx: int, page_size: int) -> Sequence[EmployeeORM]:
     async with session() as sess:
         query = (select(EmployeeORM)
-            .offset(page_idx*page_idx)
+            .offset(page_idx*page_size)
             .limit(page_size)
             .filter(EmployeeORM.removed_on == None)
         )
