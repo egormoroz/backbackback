@@ -16,14 +16,12 @@ services:
     command: bash -c "fastapi run main.py --port 8000"
     volumes:
       - .:/app
-    ports:
-      - 8000:8000
     depends_on:
       - db
 
   nginx:
-    image: nginx
     container_name: nginx
+    build: ./nginx
     ports:
       - 80:80
     volumes:
