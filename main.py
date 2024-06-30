@@ -8,6 +8,7 @@ from loguru import logger
 import db
 from models import EmployeeORM
 from schemas import EmployeeDTO
+from settings import settings
 
 
 @asynccontextmanager
@@ -16,6 +17,10 @@ async def lifespan(_: FastAPI):
     await db.insert_data()
     yield
 
+
+logger.add(f"{settings.LOG_FOLDER}/logfile.log",
+           rotation=settings.LOG_ROTATION, 
+           retention=settings.LOG_RETENTION)
 
 app = FastAPI(lifespan=lifespan)
 

@@ -8,6 +8,10 @@ class Settings(BaseSettings):
     DB_PASS: str
     DB_NAME: str
 
+    LOG_FOLDER: str
+    LOG_ROTATION: str
+    LOG_RETENTION: str
+
     @property
     def DATABASE_URL_asyncpg(self):
         return 'postgresql+asyncpg://{user}:{pwd}@{host}:{port}/{db}'.format(
